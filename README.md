@@ -4,7 +4,7 @@
 
 In this lab we will allow the client to perform an API call (or request) through our API Gateway (via a HTTPS endpoint). Our API gateway will then trigger a lambda function that is coded to perform CRUD (Create, Read, Update, and Delete) operations into our DynamoDB table.
 
-High Level Design - Serverless API Architecture
+**High Level Design - Serverless API Architecture**
 
 ![Microservice API Gateway (1)](https://user-images.githubusercontent.com/126350373/221657043-ddfe1ce8-3194-4e4e-ba06-cd146d2d7467.png)
 
@@ -59,7 +59,7 @@ An example request payload for a READ operation shows as follows:
 
 ## Setup
 
-### Create DynamoDB Table
+### Step 1 - Create DynamoDB Table
 
 Create the DynamoDB table that the Lambda function uses.
 
@@ -75,7 +75,7 @@ Create the DynamoDB table that the Lambda function uses.
 ![create DynamoDB table](https://user-images.githubusercontent.com/126350373/221652327-b62fe492-8776-4b2f-84ed-8765a97015f6.png)
 
 
-### Create Lambda IAM Role 
+### Step 2 - Create Lambda IAM Role 
 Create the execution role that gives your function permission to access AWS resources.
 
 To create an execution role
@@ -117,7 +117,7 @@ To create an execution role
     }
     ```
 
-### Create Lambda Function
+### Step 3 - Create Lambda Function
 
 **To create the function**
 1. Click "Create function" in AWS Lambda Console
@@ -173,7 +173,7 @@ def lambda_handler(event, context):
 ```
 ![Lambda Code](./images/lambda-code-paste.jpg)
 
-### Test Lambda Function
+### Step 4 - Test Lambda Function (optional)
 
 Let's test our newly created function. We haven't created DynamoDB and the API yet, so we'll do a sample echo operation. The function should output whatever input we pass.
 1. Click the arrow on "Select a test event" and click "Configure test events"
@@ -199,7 +199,7 @@ Let's test our newly created function. We haven't created DynamoDB and the API y
 We're all set to create DynamoDB table and an API using our lambda as backend!
 
 
-### Create API
+### Step 5 - Create API
 
 **To create the API**
 1. Go to API Gateway console
@@ -239,7 +239,7 @@ Click "Actions", then click "Create Resource"
 
 Our API-Lambda integration is done!
 
-### Deploy the API
+### Step 6 - Deploy the API
 
 In this step, you deploy the API that you created to a stage called prod.
 
@@ -256,7 +256,7 @@ In this step, you deploy the API that you created to a stage called prod.
 ![Copy Invoke Url](./images/copy-invoke-url.jpg)
 
 
-### Running our solution
+### Step 7 - Running our solution
 
 1. The Lambda function supports using the create operation to create an item in your DynamoDB table. To request this operation, use the following JSON:
 
@@ -304,7 +304,7 @@ We have successfully created a serverless API using API Gateway, Lambda, and Dyn
 Let's clean up the resources we have created for this lab.
 
 
-### Cleaning up DynamoDB
+### Step 8 - Cleaning up DynamoDB
 
 To delete the table, from DynamoDB console, select the table "lambda-apigateway", and click "Delete table"
 
