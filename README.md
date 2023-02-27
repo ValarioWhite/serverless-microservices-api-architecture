@@ -1,39 +1,54 @@
-# LevelUp! Lab for Serverless
+# AWS Serverless API Lab
 
 ## Lab Overview And High Level Design
 
-Let's start with the High Level Design.
-![High Level Design](./images/high-level-design.jpg)
-An Amazon API Gateway is a collection of resources and methods. For this tutorial, you create one resource (DynamoDBManager) and define one method (POST) on it. The method is backed by a Lambda function (LambdaFunctionOverHttps). That is, when you call the API through an HTTPS endpoint, Amazon API Gateway invokes the Lambda function.
+In this lab we will allow the client to perform an API call (or request) through our API Gateway (via a HTTPS endpoint). Our API gateway will then trigger a lambda function that is coded to perform CRUD (Create, Read, Update, and Delete) operations into our DynamoDB table.
 
-The POST method on the DynamoDBManager resource supports the following DynamoDB operations:
+High Level Design - Serverless API Architecture
 
-* Create, update, and delete an item.
-* Read an item.
-* Scan an item.
-* Other operations (echo, ping), not related to DynamoDB, that you can use for testing.
+![Microservice API Gateway (1)](https://user-images.githubusercontent.com/126350373/221657043-ddfe1ce8-3194-4e4e-ba06-cd146d2d7467.png)
 
-The request payload you send in the POST request identifies the DynamoDB operation and provides necessary data. For example:
 
-The following is a sample request payload for a DynamoDB create item operation:
+The client will perform the API call by using the "POST" HTTP method. Our client must provide a request payload to perform an API call. The request payload identifies the DynamoDB operation (CRUD) the client wants to perform with the necessary data. 
+
+*Assuming **apigateway-lambda-crud** is the table name of our DynamoDB table.*
+
+An example request payload for a CREATE opertion shows as follows:
 
 ```json
 {
     "operation": "create",
-    "tableName": "lambda-apigateway",
+    "tableName": "apigateway-lambda-crud",
     "payload": {
         "Item": {
             "id": "1",
-            "name": "Bob"
+            "name": "Sam"
         }
     }
 }
 ```
-The following is a sample request payload for a DynamoDB read item operation:
+
+An example request payload for a DELETE operation shows as follows:
+
+```json
+{
+    "operation": "delete",
+    "tableName": "apigateway-lambda-crud",
+    "payload": {
+        "Item": {
+            "id": "1",
+            "name": "Sam"
+        }
+    }
+}
+```
+
+An example request payload for a READ operation shows as follows:
+
 ```json
 {
     "operation": "read",
-    "tableName": "lambda-apigateway",
+    "tableName": "apigateway-lambda-crud",
     "payload": {
         "Key": {
             "id": "1"
@@ -43,6 +58,22 @@ The following is a sample request payload for a DynamoDB read item operation:
 ```
 
 ## Setup
+
+### Create DynamoDB Table
+
+Create the DynamoDB table that the Lambda function uses.
+
+**To create a DynamoDB table**
+
+1. Open the DynamoDB console.
+2. Choose Create table.
+3. Create a table with the following settings.
+   * Table name – **apigateway-lambda-crud**
+   * Primary key – id (string)
+4. Choose Create.
+
+![create DynamoDB table](https://user-images.githubusercontent.com/126350373/221652327-b62fe492-8776-4b2f-84ed-8765a97015f6.png)
+
 
 ### Create Lambda IAM Role 
 Create the execution role that gives your function permission to access AWS resources.
@@ -166,21 +197,6 @@ Let's test our newly created function. We haven't created DynamoDB and the API y
 ![Execute test event](./images/execute-test.jpg)
 
 We're all set to create DynamoDB table and an API using our lambda as backend!
-
-### Create DynamoDB Table
-
-Create the DynamoDB table that the Lambda function uses.
-
-**To create a DynamoDB table**
-
-1. Open the DynamoDB console.
-2. Choose Create table.
-3. Create a table with the following settings.
-   * Table name – lambda-apigateway
-   * Primary key – id (string)
-4. Choose Create.
-
-![create DynamoDB table](./images/create-dynamo-table.jpg)
 
 
 ### Create API
