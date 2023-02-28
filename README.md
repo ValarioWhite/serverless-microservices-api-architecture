@@ -215,7 +215,7 @@ Let's test our newly created function. We will test our **"echo"** operation AND
 ```
 ![Save test event](https://user-images.githubusercontent.com/126350373/221985916-1652e2b6-dd0e-4ef3-b997-85e25aaa9dd2.png)
 
-3. Click the arrow on the "Test" button and select the saved event we just created called "create" [**Note this will not work if your DynamoDB table doesn't have the right table name or if it isn't created properly - View Step 1"**]
+3. Click the arrow on the "Test" button and select the saved event we just created called "create" [**Note this will not work if your DynamoDB table doesn't have the right table name or if it isn't created properly - View Step 1**]
 
 ![Successful Test - 200 Code](https://user-images.githubusercontent.com/126350373/221986583-687f611d-f9ca-4753-baca-97f20da26695.png)
 
@@ -232,38 +232,33 @@ We are all set to create our API in API Gateway console
 1. Go to API Gateway console
 2. Scroll down to REST API and click "Build"
 
-![create API](./images/create-api-button.jpg) 
 ![Build API](https://user-images.githubusercontent.com/126350373/221991046-d4a3f54c-5f82-48c9-9941-4cf100559302.png)
 
-3. Scroll down and select "Build" for REST API
+3. Make sure to select "New API" and Give the API name as **DynamoOperations**, keep everything as is, click "Create API"
 
-![Build REST API](./images/build-rest-api.jpg) 
+![Create REST API](https://user-images.githubusercontent.com/126350373/221992297-49184253-380d-4ee7-afb3-cec597b67dd7.png)
 
-4. Give the API name as "DynamoDBOperations", keep everything as is, click "Create API"
-
-![Create REST API](./images/create-new-api.jpg)
-
-5. Each API is collection of resources and methods that are integrated with backend HTTP endpoints, Lambda functions, or other AWS services. Typically, API resources are organized in a resource tree according to the application logic. At this time you only have the root resource, but let's add a resource next 
+4. Each API is collection of resources and methods that are integrated with backend HTTP endpoints, Lambda functions, or other AWS services. Typically, API resources are organized in a resource tree according to the application logic. At this time you only have the root resource, but let's add a resource next 
 
 Click "Actions", then click "Create Resource"
 
-![Create API resource](./images/create-api-resource.jpg)
+![Create API resource](https://user-images.githubusercontent.com/126350373/221992675-4719886e-ef21-46f4-93ad-f3880bf9efb9.png)
 
-6. Input "DynamoDBManager" in the Resource Name, Resource Path will get populated. Click "Create Resource"
+5. Input **DynamoOperations** in the Resource Name, Resource Path will get populated. Click "Create Resource"
 
-![Create resource](./images/create-resource-name.jpg)
+![Create resource](https://user-images.githubusercontent.com/126350373/221992928-d7646703-bda8-477e-bb92-a71a9834db7d.png)
 
-7. Let's create a POST Method for our API. With the "/dynamodbmanager" resource selected, Click "Actions" again and click "Create Method". 
+6. Let's create a POST Method for our API. With the "/dynamodbmanager" resource selected, Click "Actions" again and click "Create Method". 
 
-![Create resource method](./images/create-method-1.jpg)
+![Create resource method](https://user-images.githubusercontent.com/126350373/221993094-1fa244ec-91c9-4c74-a308-d0c927604681.png)
 
-8. Select "POST" from drop down , then click checkmark
+7. Select "POST" from drop down , then click checkmark
 
-![Create resource method](./images/create-method-2.jpg)
+![Create resource method](https://user-images.githubusercontent.com/126350373/221993423-c955c2e1-7f6c-40ce-82aa-7062359c5679.png)
 
-9. The integration will come up automatically with "Lambda Function" option selected. Select "LambdaFunctionOverHttps" function that we created earlier. As you start typing the name, your function name will show up.Select and click "Save". A popup window will come up to add resource policy to the lambda to be invoked by this API. Click "Ok"
+8. The integration will come up automatically with "Lambda Function" option selected. Select **LambdaCRUDOverHTTPS** function that we created earlier. As you start typing the name, your function name will show up. Select and click "Save". A popup window will come up to add resource policy to the lambda to be invoked by this API. Click "Ok"
 
-![Create lambda integration](./images/create-lambda-integration.jpg)
+![Create lambda integration](https://user-images.githubusercontent.com/126350373/221993769-f5291680-0647-492b-883b-0fdbe2a13891.png)
 
 Our API-Lambda integration is done!
 
@@ -273,20 +268,31 @@ In this step, you deploy the API that you created to a stage called prod.
 
 1. Click "Actions", select "Deploy API"
 
-![Deploy API](./images/deploy-api-1.jpg)
+![Deploy API](https://user-images.githubusercontent.com/126350373/221994031-32bbf954-3c28-465c-b146-327be76d07ee.png)
 
 2. Now it is going to ask you about a stage. Select "[New Stage]" for "Deployment stage". Give "Prod" as "Stage name". Click "Deploy"
 
-![Deploy API to Prod Stage](./images/deploy-api-2.jpg)
+![Deploy API to Prod Stage](https://user-images.githubusercontent.com/126350373/221994238-db3d8c5a-8102-4a9d-bb6d-34a6e6cca617.png)
 
-3. We're all set to run our solution! To invoke our API endpoint, we need the endpoint url. In the "Stages" screen, expand the stage "Prod", select "POST" method, and copy the "Invoke URL" from screen
+3. We're all set to run our solution! To invoke our API endpoint, we need the endpoint url. In the "Stages" screen, expand the stage "Prod", select "POST" method, and copy the "Invoke URL" from screen (we are going to need it in Step 7)
 
-![Copy Invoke Url](./images/copy-invoke-url.jpg)
+![Copy Invoke URL](https://user-images.githubusercontent.com/126350373/221994525-a315759f-ba1a-4d34-b34a-59f057ce1cf9.png)
 
 
 ### Step 7 - Running our solution
 
-1. The Lambda function supports using the create operation to create an item in your DynamoDB table. To request this operation, use the following JSON:
+1. Go to Postman.com and go to your workspace. (If you've never used Postman then you will have to sign up, no worries it is free and you can use the browser interface)
+
+![Select Postman Workspace](https://user-images.githubusercontent.com/126350373/221995121-5e57ae27-b04f-44ab-b73a-04beac313a56.png)
+
+2. Click the "New" button then select HTTP Request as shown in the screenshot below.
+![Creating HTTP Request](https://user-images.githubusercontent.com/126350373/221995255-aef9b50d-de32-4774-b1a1-4c7b80cbfd14.png)
+
+3. Switch "GET" to "POST". Next, copy and paste the Invoke URL that we copied from our API Gateway in the previous step. Lastly, select "Body" then the "raw" option. All shown in the screenshot below.
+
+![image](https://user-images.githubusercontent.com/126350373/221996177-9fe95532-4f4e-4b1a-972b-04b6f8db8ee7.png)
+
+4. The Lambda function supports using the create operation to create an item in your DynamoDB table. To request this operation, use the following JSON:
 
 ```json
 {
