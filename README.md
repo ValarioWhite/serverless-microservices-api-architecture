@@ -242,7 +242,7 @@ We are all set to create our API in API Gateway console
 
 Click "Actions", then click "Create Resource"
 
-![Create API resource](https://user-images.githubusercontent.com/126350373/221992675-4719886e-ef21-46f4-93ad-f3880bf9efb9.png)
+![Create API resource](https://user-images.githubusercontent.com/126350373/222020359-db68ce6e-65ca-4eee-ae8b-b6d65351ee21.png)
 
 5. Input **DynamoOperations** in the Resource Name, Resource Path will get populated. Click "Create Resource"
 
@@ -268,7 +268,7 @@ In this step, you deploy the API that you created to a stage called prod.
 
 1. Click "Actions", select "Deploy API"
 
-![Deploy API](https://user-images.githubusercontent.com/126350373/221994031-32bbf954-3c28-465c-b146-327be76d07ee.png)
+![Deploy API](https://user-images.githubusercontent.com/126350373/222020622-f3317982-5d0a-492b-a418-235350ee05d4.png)
 
 2. Now it is going to ask you about a stage. Select "[New Stage]" for "Deployment stage". Give "Prod" as "Stage name". Click "Deploy"
 
