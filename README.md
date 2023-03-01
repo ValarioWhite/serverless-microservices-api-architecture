@@ -170,7 +170,7 @@ def lambda_handler(event,context):
 
 Let's test our newly created function. We will test our **"echo"** operation AND our **"create"** operation. **"echo"** is an operation that should output whatever the request/input/event submitted. **"create"** is an operation that will create a real record into the DynamoDB table (*apigateway-lambda-crud*) we created in the first step.  
 
-**Echo Operation TEST**
+**"echo" Operation TEST**
 1. Click the arrow on the "Test" button and click "Configure test events"
 
 ![Configure test events](https://user-images.githubusercontent.com/126350373/221981236-6632840f-3f45-4373-9e2c-f1644699b67a.png)
@@ -193,7 +193,7 @@ Let's test our newly created function. We will test our **"echo"** operation AND
 ![Successful Test](https://user-images.githubusercontent.com/126350373/221988503-418d8ea0-a8b1-452c-badb-379bf3456d3c.png)
 
 
-**Create Operation TEST**
+**"create" Operation TEST**
 1. Click the arrow on the "Test" button and click "Configure test events"
 
 ![Configure test events](https://user-images.githubusercontent.com/126350373/221985018-da9da98e-6298-4af1-a255-474d14b31837.png)
