@@ -276,7 +276,7 @@ In this step, you deploy the API that you created to a stage called prod.
 
 3. We're all set to run our solution! To invoke our API endpoint, we need the endpoint url. In the "Stages" screen, expand the stage "Prod", select "POST" method, and copy the "Invoke URL" from screen (we are going to need it in Step 7)
 
-![Copy Invoke URL](https://user-images.githubusercontent.com/126350373/221994525-a315759f-ba1a-4d34-b34a-59f057ce1cf9.png)
+![Copy Invoke URL](https://user-images.githubusercontent.com/126350373/222017833-9a7e2780-dd44-4ce9-afa2-17c6bc5b2fdd.png)
 
 
 ### Step 7 - Running our solution
@@ -290,46 +290,29 @@ In this step, you deploy the API that you created to a stage called prod.
 
 3. Switch "GET" to "POST". Next, copy and paste the Invoke URL that we copied from our API Gateway in the previous step. Lastly, select "Body" then the "raw" option. All shown in the screenshot below.
 
-![image](https://user-images.githubusercontent.com/126350373/221996177-9fe95532-4f4e-4b1a-972b-04b6f8db8ee7.png)
+![Postman Setup](https://user-images.githubusercontent.com/126350373/222018220-66eb3ea8-da1c-4c46-af8f-823c56ed6cea.png)
 
 4. The Lambda function supports using the create operation to create an item in your DynamoDB table. To request this operation, use the following JSON:
 
 ```json
 {
     "operation": "create",
-    "tableName": "lambda-apigateway",
+    "tableName": "apigateway-lambda-crud",
     "payload": {
         "Item": {
-            "id": "1234ABCD",
-            "number": 5
+            "id": "ABCD",
+            "number": 879
         }
     }
 }
 ```
-2. To execute our API from local machine, we are going to use Postman and Curl command. You can choose either method based on your convenience and familiarity. 
-    * To run this from Postman, select "POST" , paste the API invoke url. Then under "Body" select "raw" and paste the above JSON. Click "Send". API should execute and return "HTTPStatusCode" 200.
+5. Paste the above JSON. Click "Send". API should execute and return "HTTPStatusCode" 200.
+![Successful Postman Request - 200 Code](https://user-images.githubusercontent.com/126350373/222018691-1934dd6e-e171-495b-9dee-39b65edca622.png)
 
-    ![Execute from Postman](./images/create-from-postman.jpg)
+ 
+6. To validate that the item is indeed inserted into DynamoDB table, go to Dynamo console, select **apigateway-lambda-crud** table, select "Explore items" tab, and the newly inserted item should be displayed.
 
-    * To run this from terminal using Curl, run the below
-    ```
-    $ curl -X POST -d "{\"operation\":\"create\",\"tableName\":\"lambda-apigateway\",\"payload\":{\"Item\":{\"id\":\"1\",\"name\":\"Bob\"}}}" https://$API.execute-api.$REGION.amazonaws.com/prod/DynamoDBManager
-    ```   
-3. To validate that the item is indeed inserted into DynamoDB table, go to Dynamo console, select "lambda-apigateway" table, select "Items" tab, and the newly inserted item should be displayed.
-
-![Dynamo Item](./images/dynamo-item.jpg)
-
-4. To get all the inserted items from the table, we can use the "list" operation of Lambda using the same API. Pass the following JSON to the API, and it will return all the items from the Dynamo table
-
-```json
-{
-    "operation": "list",
-    "tableName": "lambda-apigateway",
-    "payload": {
-    }
-}
-```
-![List Dynamo Items](./images/dynamo-item-list.jpg)
+![Dynamo Item](https://user-images.githubusercontent.com/126350373/222018953-d3c4f4d2-e835-41a4-94e7-db1b954a776c.png)
 
 We have successfully created a serverless API using API Gateway, Lambda, and DynamoDB!
 
@@ -340,14 +323,14 @@ Let's clean up the resources we have created for this lab.
 
 ### Step 8 - Cleaning up DynamoDB
 
-To delete the table, from DynamoDB console, select the table "lambda-apigateway", and click "Delete table"
+To delete the table, from DynamoDB console, select the table "apigateway-lambda-crud", and click "Delete table"
 
-![Delete Dynamo](./images/delete-dynamo.jpg)
+![Delete Dynamo](https://user-images.githubusercontent.com/126350373/222019212-453cf01d-36ad-4f38-bf36-4c1988ad84ef.png)
 
-To delete the Lambda, from the Lambda console, select lambda "LambdaFunctionOverHttps", click "Actions", then click Delete 
+To delete the Lambda, from the Lambda console, select lambda "LambdaCRUDOverHTTPS", click "Actions", then click Delete 
 
-![Delete Lambda](./images/delete-lambda.jpg)
+![Delete Lambda](https://user-images.githubusercontent.com/126350373/222019298-937dc8ef-49ed-4242-88ca-5c9072bf5924.png)
 
-To delete the API we created, in API gateway console, under APIs, select "DynamoDBOperations" API, click "Actions", then "Delete"
+To delete the API we created, in API gateway console, under APIs, select "DynamoOperations" API, click "Actions", then "Delete"
 
-![Delete API](./images/delete-api.jpg)
+![Delete API](https://user-images.githubusercontent.com/126350373/222019458-0c6d6050-4f39-4d7a-8a68-6fa2bb64bef9.png)
