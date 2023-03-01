@@ -321,7 +321,7 @@ We have successfully created a serverless API using API Gateway, Lambda, and Dyn
 Let's clean up the resources we have created for this lab.
 
 
-### Step 8 - Cleaning up DynamoDB
+### Step 8 - Cleaning up DynamoDB, Lambda, and API Gateway
 
 To delete the table, from DynamoDB console, select the table "apigateway-lambda-crud", and click "Delete table"
 
