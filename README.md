@@ -107,7 +107,7 @@ To create an execution role
             "Resource": "*"
         }
     ]
-}
+    }
     ```
 
 ### Step 3 - Create Lambda Function
