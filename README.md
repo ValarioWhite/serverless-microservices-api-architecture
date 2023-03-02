@@ -248,7 +248,7 @@ Click "Actions", then click "Create Resource"
 
 ![Create resource](https://user-images.githubusercontent.com/126350373/221992928-d7646703-bda8-477e-bb92-a71a9834db7d.png)
 
-6. Let's create a POST Method for our API. With the "/dynamodbmanager" resource selected, Click "Actions" again and click "Create Method". 
+6. Let's create a POST Method for our API. With the "/dynamoooperations" resource selected, Click "Actions" again and click "Create Method". 
 
 ![Create resource method](https://user-images.githubusercontent.com/126350373/221993094-1fa244ec-91c9-4c74-a308-d0c927604681.png)
 
