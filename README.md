@@ -1,4 +1,4 @@
-# AWS Serverless API Lab - [Video Demonstration](youtu.be/vQvtmsdu9X4)
+# AWS Serverless API Lab - [Click Here for Video Demonstration](youtu.be/vQvtmsdu9X4)
 
 ## Lab Overview And High Level Design
 
