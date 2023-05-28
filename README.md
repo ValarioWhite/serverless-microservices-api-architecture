@@ -221,7 +221,22 @@ Let's test our newly created function. We will test our **"echo"** operation AND
 
 ![Successful Test - 200 Code](https://user-images.githubusercontent.com/126350373/221986583-687f611d-f9ca-4753-baca-97f20da26695.png)
 
-4. (Optional) Go to the DynamoDB service and click "Tables" on the left-hand panel. Next click the DynamoDB table we created in step 1 called "apigateway-lambda-crud". After that, click on "Explore items" on the left-hand panel. Lastly, you should see a new item created from our "Create Operation Test".
+**"read" Operation TEST**
+1. Click the arrow on the "Test" button and click "Configure test events"
+
+2. Paste the following JSON into the event. The field "operation" dictates what the lambda function will perform. In this case, it'd simply return the payload from input event as output. Click "Create" to save.
+```json
+ {
+  "operation": "read",
+  "tableName": "apigateway-lambda-crud",
+  "payload": {
+    "Key":{"id":"ABC"}
+    
+  }
+}
+```
+
+3. Click "Test", and it will execute the test event successfully. You should see the output in the console
 
 ![Verified "Create Operation Test"](https://user-images.githubusercontent.com/126350373/221987329-71ddaf06-654b-476d-911b-71106e764aa5.png)
 
